@@ -1,4 +1,6 @@
-﻿namespace Mitien.RentalCar.Repository.DTOs;
+﻿using Mitien.RentalCar.Business.Entities;
+
+namespace Mitien.RentalCar.Repository.DTOs;
 
 public class UserDTO
 {
