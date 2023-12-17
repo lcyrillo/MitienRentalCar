@@ -6,7 +6,11 @@ using Mitien.RentalCar.Repository.Repositories;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+// Repositories
 builder.Services.AddScoped<IUserTypeRepository, UserTypeRepository>();
+
+// Services
 builder.Services.AddScoped<IUserTypeService, UserTypeService>();
 
 builder.Services.AddControllers();

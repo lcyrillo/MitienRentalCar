@@ -37,7 +37,7 @@ public class UserTypeRepository : IUserTypeRepository
     public async Task<List<UserTypeResponseModel>> GetByDescription(string description)
     {
         using var connection = new SqlConnection(_config.GetConnectionString("SqlServer"));
-        var userTypes = await connection.QueryAsync<UserTypeDTO>("select * from USER_TYPE where description like '%@Description%' ", new { Description = description });
+        var userTypes = await connection.QueryAsync<UserTypeDTO>("select * from USER_TYPE where description like @Description ", new { Description = "%" + description + "%" });
 
         return userTypes.ToListOfUserTypeResponseModel().ToList();
     }

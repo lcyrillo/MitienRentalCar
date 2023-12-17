@@ -10,6 +10,6 @@ public interface IUserTypeService
     public Task<List<UserTypeResponseModel>> GetByDescription(string description);
     public void Add(UserTypeRequestModel userTypeRequestModel);
     public void Update(UserTypeRequestModel userTypeRequestModel);
-    public void Delete(int id);
+    public Task<UserTypeResponseModel> Delete(int id);
 }
 

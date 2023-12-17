@@ -39,9 +39,14 @@ public class UserTypeService : IUserTypeService
         _userTypeRepository.Update(userTypeRequestModel);
     }
 
-    public void Delete(int id)
+    public Task<UserTypeResponseModel> Delete(int id)
     {
-        _userTypeRepository.Delete(id);
+        var userType = _userTypeRepository.GetById(id);
+
+        if (userType != null)
+            _userTypeRepository.Delete(id);
+
+        return userType;
     }
 }
 

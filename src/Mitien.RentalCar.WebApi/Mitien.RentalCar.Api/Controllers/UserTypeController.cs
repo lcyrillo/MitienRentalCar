@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Mitien.RentalCar.Business.Interfaces.Services;
 using Mitien.RentalCar.Business.RequestModels;
+using Mitien.RentalCar.Business.ResponseModels;
 
 namespace Mitien.RentalCar.Api.Controllers;
 
@@ -20,6 +21,9 @@ public class UserTypeController : Controller
     {
         var result = await _userTypeService.GetAll();
 
+        if (result is null)
+            return BadRequest(new UserTypeResponseModel());
+
         return Ok(result);
     }
 
@@ -29,6 +33,9 @@ public class UserTypeController : Controller
     {
         var result = await _userTypeService.GetById(id);
 
+        if (result is null)
+            return BadRequest(new UserTypeResponseModel());
+
         return Ok(result);
     }
 
@@ -37,6 +44,9 @@ public class UserTypeController : Controller
     public async Task<IActionResult> GetUserTypeByDescription([FromQuery] string description)
     {
         var result = await _userTypeService.GetByDescription(description);
+
+        if (result is null)
+            return BadRequest(new UserTypeResponseModel());
 
         return Ok(result);
     }
@@ -71,13 +81,13 @@ public class UserTypeController : Controller
 
     [HttpDelete]
     [Route("[action]/{id}")]
-    public IActionResult DeleteUserType(int id)
+    public async Task<IActionResult> DeleteUserType(int id)
     {
         if (id != 0)
         {
-            _userTypeService.Delete(id);
+            var result = await _userTypeService.Delete(id);
 
-            return Ok();
+            return Ok(result);
         }
 
         return BadRequest();
