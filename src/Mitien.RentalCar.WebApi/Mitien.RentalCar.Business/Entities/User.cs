@@ -4,8 +4,8 @@
     {
         public int Id { get; set; }
         public string? Email { get; set; }
-        public HashCode PasswordHash { get; set; }
-        public HashCode PasswordSalt { get; set; }
+        public byte[]? PasswordHash { get; set; }
+        public byte[]? PasswordSalt { get; set; }
         public string? Name { get; set; }
         public string? Nationality { get; set; }
         public DocumentType? DocumentType { get; set; }
