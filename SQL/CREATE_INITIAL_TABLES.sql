@@ -88,6 +88,7 @@ create table USER_TYPE
 (
     ID integer identity not null,
     DESCRIPTION varchar(200) not null,
+    MNEMONIC char(6) not null
 
     CONSTRAINT pk_usertype primary key (ID)
 )
