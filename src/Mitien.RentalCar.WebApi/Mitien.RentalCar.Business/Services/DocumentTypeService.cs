@@ -1,4 +1,4 @@
-﻿    using Mitien.RentalCar.Business.Interfaces.Repositories;
+﻿using Mitien.RentalCar.Business.Interfaces.Repositories;
 using Mitien.RentalCar.Business.Interfaces.Services;
 using Mitien.RentalCar.Business.RequestModels;
 using Mitien.RentalCar.Business.ResponseModels;
@@ -14,19 +14,19 @@ public class DocumentTypeService : IDocumentTypeService
         _documentTypeRepository = documentTypeRepository;
     }
 
-    public Task<List<DocumentTypeResponseModel>> GetAll()
+    public async Task<List<DocumentTypeResponseModel?>> GetAll()
     {
-        return _documentTypeRepository.GetAll();
+        return await _documentTypeRepository.GetAll();
     }
 
-    public Task<DocumentTypeResponseModel> GetById(int id)
+    public async Task<DocumentTypeResponseModel?> GetById(int id)
     {
-        return _documentTypeRepository.GetById(id);
+        return await _documentTypeRepository.GetById(id);
     }
 
-    public Task<List<DocumentTypeResponseModel>> GetByDescription(string description)
+    public async Task<List<DocumentTypeResponseModel?>> GetByDescription(string description)
     {
-        return _documentTypeRepository.GetByDescription(description);
+        return await _documentTypeRepository.GetByDescription(description);
     }
 
     public void Add(DocumentTypeRequestModel userTypeRequestModel)

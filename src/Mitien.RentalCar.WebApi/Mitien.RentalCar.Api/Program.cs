@@ -10,10 +10,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Repositories
 builder.Services.AddScoped<IUserTypeRepository, UserTypeRepository>();
 builder.Services.AddScoped<IDocumentTypeRepository, DocumentTypeRepository>();
+builder.Services.AddScoped<IVehicleCategoryRepository, VehicleCategoryRepository>();
 
 // Services
 builder.Services.AddScoped<IUserTypeService, UserTypeService>();
 builder.Services.AddScoped<IDocumentTypeService, DocumentTypeService>();
+builder.Services.AddScoped<IVehicleCategoryService, VehicleCategoryService>();
 
 //////////////////////
 

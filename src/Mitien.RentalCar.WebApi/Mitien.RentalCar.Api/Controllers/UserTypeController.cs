@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Mitien.RentalCar.Business.Entities;
 using Mitien.RentalCar.Business.Interfaces.Services;
 using Mitien.RentalCar.Business.RequestModels;
-using Mitien.RentalCar.Business.Services;
 
 namespace Mitien.RentalCar.Api.Controllers;
 

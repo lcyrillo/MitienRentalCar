@@ -18,7 +18,7 @@ public class DocumentTypeRepository : IDocumentTypeRepository
         _config = config;
     }
 
-    public async Task<List<DocumentTypeResponseModel>> GetAll()
+    public async Task<List<DocumentTypeResponseModel?>> GetAll()
     {
         using var connection = new SqlConnection(_config.GetConnectionString("SqlServer"));
         var documentTypes = await connection.QueryAsync<DocumentTypeDTO>("select * from DOCUMENT_TYPE");
@@ -26,7 +26,7 @@ public class DocumentTypeRepository : IDocumentTypeRepository
         return documentTypes.ToListOfDocumentTypeResponseModel().ToList();
     }
 
-    public async Task<DocumentTypeResponseModel> GetById(int id)
+    public async Task<DocumentTypeResponseModel?> GetById(int id)
     {
         using var connection = new SqlConnection(_config.GetConnectionString("SqlServer"));
         var documentTypes = await connection.QueryFirstOrDefaultAsync<DocumentTypeDTO>("select * from DOCUMENT_TYPE where id = @Id", new { Id = id });
@@ -34,7 +34,7 @@ public class DocumentTypeRepository : IDocumentTypeRepository
         return documentTypes.ToDocumentTypeResponseModel();
     }
 
-    public async Task<List<DocumentTypeResponseModel>> GetByDescription(string description)
+    public async Task<List<DocumentTypeResponseModel?>> GetByDescription(string description)
     {
         using var connection = new SqlConnection(_config.GetConnectionString("SqlServer"));
         var documentTypes = await connection.QueryAsync<DocumentTypeDTO>("select * from DOCUMENT_TYPE where description like @Description ", new { Description = "%" + description + "%" });

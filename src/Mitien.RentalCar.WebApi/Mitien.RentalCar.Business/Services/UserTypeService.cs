@@ -14,19 +14,19 @@ public class UserTypeService : IUserTypeService
         _userTypeRepository = userTypeRepository;
     }
 
-    public Task<List<UserTypeResponseModel?>> GetAll()
+    public async Task<List<UserTypeResponseModel?>> GetAll()
     {
-        return _userTypeRepository.GetAll();
+        return await _userTypeRepository.GetAll();
     }
 
-    public Task<UserTypeResponseModel?> GetById(int id)
+    public async Task<UserTypeResponseModel?> GetById(int id)
     {
-        return _userTypeRepository.GetById(id);
+        return await _userTypeRepository.GetById(id);
     }
 
-    public Task<List<UserTypeResponseModel?>> GetByDescription(string description)
+    public async Task<List<UserTypeResponseModel?>> GetByDescription(string description)
     {
-        return _userTypeRepository.GetByDescription(description);
+        return await _userTypeRepository.GetByDescription(description);
     }
 
     public void Add(UserTypeRequestModel userTypeRequestModel)
