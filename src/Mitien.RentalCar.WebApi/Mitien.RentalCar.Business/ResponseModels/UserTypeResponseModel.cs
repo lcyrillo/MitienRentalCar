@@ -4,5 +4,6 @@ public class UserTypeResponseModel
 {
     public int Id { get; set; }
     public string? Description { get; set; }
+    public string? Mnemonic { get; set; }
 }
 

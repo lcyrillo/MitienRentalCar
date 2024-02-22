@@ -9,12 +9,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Repositories
 builder.Services.AddScoped<IUserTypeRepository, UserTypeRepository>();
+builder.Services.AddScoped<IDocumentTypeRepository, DocumentTypeRepository>();
 
 // Services
 builder.Services.AddScoped<IUserTypeService, UserTypeService>();
+builder.Services.AddScoped<IDocumentTypeService, DocumentTypeService>();
+
+//////////////////////
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -5,19 +5,20 @@ namespace Mitien.RentalCar.Repository.Adapters;
 
 public static class UserTypeResponseAdapter
 {
-    public static UserTypeResponseModel ToUserTypeResponseModel(this UserTypeDTO userTypeDTO)
+    public static UserTypeResponseModel? ToUserTypeResponseModel(this UserTypeDTO userTypeDTO)
     {
         if (userTypeDTO == null)
-            return new UserTypeResponseModel();
+            return null;
 
         return new UserTypeResponseModel()
         {
             Id = userTypeDTO.Id,
-            Description = userTypeDTO.Description
+            Description = userTypeDTO.Description,
+            Mnemonic = userTypeDTO.Mnemonic,
         };
     }
 
-    public static IEnumerable<UserTypeResponseModel> ToListOfUserTypeResponseModel(this IEnumerable<UserTypeDTO> userTypesDTO)
+    public static IEnumerable<UserTypeResponseModel?> ToListOfUserTypeResponseModel(this IEnumerable<UserTypeDTO> userTypesDTO)
     {
         if (userTypesDTO != null)
         {

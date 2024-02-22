@@ -14,17 +14,17 @@ public class UserTypeService : IUserTypeService
         _userTypeRepository = userTypeRepository;
     }
 
-    public Task<List<UserTypeResponseModel>> GetAll()
+    public Task<List<UserTypeResponseModel?>> GetAll()
     {
         return _userTypeRepository.GetAll();
     }
 
-    public Task<UserTypeResponseModel> GetById(int id)
+    public Task<UserTypeResponseModel?> GetById(int id)
     {
         return _userTypeRepository.GetById(id);
     }
 
-    public Task<List<UserTypeResponseModel>> GetByDescription(string description)
+    public Task<List<UserTypeResponseModel?>> GetByDescription(string description)
     {
         return _userTypeRepository.GetByDescription(description);
     }
@@ -39,14 +39,12 @@ public class UserTypeService : IUserTypeService
         _userTypeRepository.Update(userTypeRequestModel);
     }
 
-    public Task<UserTypeResponseModel> Delete(int id)
+    public void Delete(int id)
     {
         var userType = _userTypeRepository.GetById(id);
 
         if (userType != null)
             _userTypeRepository.Delete(id);
-
-        return userType;
     }
 }
 

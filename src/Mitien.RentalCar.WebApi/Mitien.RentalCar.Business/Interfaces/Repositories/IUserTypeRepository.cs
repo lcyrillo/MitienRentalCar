@@ -11,5 +11,4 @@ public interface IUserTypeRepository
     public void Add(UserTypeRequestModel userTypeRequestModel);
     public void Update(UserTypeRequestModel userTypeRequestModel);
     public void Delete(int id);
-
 }

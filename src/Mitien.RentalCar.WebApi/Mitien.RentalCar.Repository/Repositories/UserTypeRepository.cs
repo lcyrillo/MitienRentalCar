@@ -45,13 +45,14 @@ public class UserTypeRepository : IUserTypeRepository
     public async void Add(UserTypeRequestModel userTypeRequestModel)
     {
         using var connection = new SqlConnection(_config.GetConnectionString("SqlServer"));
-        await connection.ExecuteAsync("insert into USER_TYPE (description) values (@Description)", userTypeRequestModel);
+        await connection.ExecuteAsync("insert into USER_TYPE (description, mnemonic) values (@Description, @Mnemonic)", userTypeRequestModel);
     }
 
     public async void Update(UserTypeRequestModel userTypeRequestModel)
     {
         using var connection = new SqlConnection(_config.GetConnectionString("SqlServer"));
-        await connection.ExecuteAsync("update USER_TYPE set description = @Description where id = @Id", new { Description = userTypeRequestModel.Description, Id = userTypeRequestModel.Id });
+        await connection.ExecuteAsync("update USER_TYPE set description = @Description, mnemonic = @Mnemonic where id = @Id", 
+                                        new { userTypeRequestModel.Description, userTypeRequestModel.Mnemonic, userTypeRequestModel.Id });
     }
 
     public async void Delete(int id)
