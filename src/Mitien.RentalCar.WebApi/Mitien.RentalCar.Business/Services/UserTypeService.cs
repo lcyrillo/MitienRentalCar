@@ -34,9 +34,9 @@ public class UserTypeService : IUserTypeService
         _userTypeRepository.Add(userTypeRequestModel);
     }
 
-    public void Update(UserTypeRequestModel userTypeRequestModel)
+    public void Update(int id, UserTypeRequestModel userTypeRequestModel)
     {
-        _userTypeRepository.Update(userTypeRequestModel);
+        _userTypeRepository.Update(id, userTypeRequestModel);
     }
 
     public void Delete(int id)

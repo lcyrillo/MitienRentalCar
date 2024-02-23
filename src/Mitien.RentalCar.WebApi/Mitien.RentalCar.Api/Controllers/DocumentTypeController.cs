@@ -15,17 +15,15 @@ public class DocumentTypeController : Controller
     }
 
     [HttpGet]
-    [Route("GetDocumentTypes")]
-    public async Task<IActionResult> GetDocumentTypes()
+    public async Task<IActionResult> Get()
     {
         var result = await _documentTypeService.GetAll();
 
         return Ok(result);
     }
 
-    [HttpGet]
-    [Route("GetDocumentTypeById")]
-    public async Task<IActionResult> GetDocumentTypeById([FromQuery] int id)
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(int id)
     {
         var result = await _documentTypeService.GetById(id);
 
@@ -36,8 +34,8 @@ public class DocumentTypeController : Controller
     }
 
     [HttpGet]
-    [Route("GetDocumentTypeByDescription")]
-    public async Task<IActionResult> GetDocumentTypeByDescription([FromQuery] string description)
+    [Route("Description")]
+    public async Task<IActionResult> GetByDescription([FromQuery] string description)
     {
         var result = await _documentTypeService.GetByDescription(description);
 
@@ -48,8 +46,7 @@ public class DocumentTypeController : Controller
     }
 
     [HttpPost]
-    [Route("AddDocumentType")]
-    public IActionResult AddDocumentType([FromBody] DocumentTypeRequestModel documentType)
+    public IActionResult Post([FromBody] DocumentTypeRequestModel documentType)
     {
         if (documentType != null)
         {
@@ -61,17 +58,16 @@ public class DocumentTypeController : Controller
         return BadRequest(documentType);
     }
 
-    [HttpPut]
-    [Route("UpdateDocumentType")]
-    public async Task<IActionResult> UpdateDocumentType([FromBody] DocumentTypeRequestModel documentType)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(int id, [FromBody] DocumentTypeRequestModel documentType)
     {
         if (documentType != null)
         {
-            var result = await _documentTypeService.GetById(documentType.Id);
+            var result = await _documentTypeService.GetById(id);
 
             if (result is null) return NotFound();
 
-            _documentTypeService.Update(documentType);
+            _documentTypeService.Update(id, documentType);
 
             return Ok(documentType);
         }
@@ -79,9 +75,8 @@ public class DocumentTypeController : Controller
         return BadRequest(documentType);
     }
 
-    [HttpDelete]
-    [Route("DeleteDocumentType/{id}")]
-    public async Task<IActionResult> DeleteDocumentType(int id)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
     {
         var result = await _documentTypeService.GetById(id);
 

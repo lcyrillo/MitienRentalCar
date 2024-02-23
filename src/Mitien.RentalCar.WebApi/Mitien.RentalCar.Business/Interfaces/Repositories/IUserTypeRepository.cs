@@ -9,6 +9,6 @@ public interface IUserTypeRepository
     public Task<UserTypeResponseModel?> GetById(int id);
     public Task<List<UserTypeResponseModel?>> GetByDescription(string description);
     public void Add(UserTypeRequestModel userTypeRequestModel);
-    public void Update(UserTypeRequestModel userTypeRequestModel);
+    public void Update(int id, UserTypeRequestModel userTypeRequestModel);
     public void Delete(int id);
 }

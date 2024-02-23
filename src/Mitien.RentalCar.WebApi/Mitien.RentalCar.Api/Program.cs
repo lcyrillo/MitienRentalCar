@@ -1,21 +1,14 @@
-using Mitien.RentalCar.Business.Interfaces.Repositories;
-using Mitien.RentalCar.Business.Interfaces.Services;
-using Mitien.RentalCar.Business.Services;
-using Mitien.RentalCar.Repository.Repositories;
+using Mitien.RentalCar.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 // Repositories
-builder.Services.AddScoped<IUserTypeRepository, UserTypeRepository>();
-builder.Services.AddScoped<IDocumentTypeRepository, DocumentTypeRepository>();
-builder.Services.AddScoped<IVehicleCategoryRepository, VehicleCategoryRepository>();
+builder.AddApplicationRepository();
 
 // Services
-builder.Services.AddScoped<IUserTypeService, UserTypeService>();
-builder.Services.AddScoped<IDocumentTypeService, DocumentTypeService>();
-builder.Services.AddScoped<IVehicleCategoryService, VehicleCategoryService>();
+builder.AddApplicationServices();
 
 //////////////////////
 

@@ -48,11 +48,11 @@ public class UserTypeRepository : IUserTypeRepository
         await connection.ExecuteAsync("insert into USER_TYPE (description, mnemonic) values (@Description, @Mnemonic)", userTypeRequestModel);
     }
 
-    public async void Update(UserTypeRequestModel userTypeRequestModel)
+    public async void Update(int id, UserTypeRequestModel userTypeRequestModel)
     {
         using var connection = new SqlConnection(_config.GetConnectionString("SqlServer"));
         await connection.ExecuteAsync("update USER_TYPE set description = @Description, mnemonic = @Mnemonic where id = @Id", 
-                                        new { userTypeRequestModel.Description, userTypeRequestModel.Mnemonic, userTypeRequestModel.Id });
+                                        new { userTypeRequestModel.Description, userTypeRequestModel.Mnemonic, id});
     }
 
     public async void Delete(int id)

@@ -48,11 +48,11 @@ public class DocumentTypeRepository : IDocumentTypeRepository
         await connection.ExecuteAsync("insert into DOCUMENT_TYPE (description) values (@Description)", documentTypeRequestModel);
     }
 
-    public async void Update(DocumentTypeRequestModel documentTypeRequestModel)
+    public async void Update(int id, DocumentTypeRequestModel documentTypeRequestModel)
     {
         using var connection = new SqlConnection(_config.GetConnectionString("SqlServer"));
         await connection.ExecuteAsync("update DOCUMENT_TYPE set description = @Description where id = @Id",
-                                        new { documentTypeRequestModel.Description, documentTypeRequestModel.Id });
+                                        new { documentTypeRequestModel.Description, id });
     }
 
     public async void Delete(int id)

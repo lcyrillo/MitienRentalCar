@@ -15,17 +15,15 @@ public class VehicleCategoryController : Controller
     }
 
     [HttpGet]
-    [Route("GetVehicleCategory")]
-    public async Task<IActionResult> GetVehicleCategory()
+    public async Task<IActionResult> Get()
     {
         var result = await _vehicleCategoryService.GetAll();
 
         return Ok(result);
     }
 
-    [HttpGet]
-    [Route("GetVehicleCategoryById")]
-    public async Task<IActionResult> GetVehicleCategoryById([FromQuery] int id)
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(int id)
     {
         var result = await _vehicleCategoryService.GetById(id);
 
@@ -36,8 +34,8 @@ public class VehicleCategoryController : Controller
     }
 
     [HttpGet]
-    [Route("GetVehicleCategoryByDescription")]
-    public async Task<IActionResult> GetVehicleCategoryByDescription([FromQuery] string description)
+    [Route("Description")]
+    public async Task<IActionResult> GetByDescription([FromQuery] string description)
     {
         var result = await _vehicleCategoryService.GetByDescription(description);
 
@@ -48,8 +46,7 @@ public class VehicleCategoryController : Controller
     }
 
     [HttpPost]
-    [Route("AddVehicleCategory")]
-    public IActionResult AddVehicleCategory([FromBody] VehicleCategoryRequestModel vehicleCategory)
+    public IActionResult Post([FromBody] VehicleCategoryRequestModel vehicleCategory)
     {
         if (vehicleCategory != null)
         {
@@ -61,17 +58,16 @@ public class VehicleCategoryController : Controller
         return BadRequest(vehicleCategory);
     }
 
-    [HttpPut]
-    [Route("UpdateVehicleCategory")]
-    public async Task<IActionResult> UpdateVehicleCategory([FromBody] VehicleCategoryRequestModel vehicleCategory)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(int id, [FromBody] VehicleCategoryRequestModel vehicleCategory)
     {
         if (vehicleCategory != null)
         {
-            var result = await _vehicleCategoryService.GetById(vehicleCategory.Id);
+            var result = await _vehicleCategoryService.GetById(id);
 
             if (result is null) return NotFound();
 
-            _vehicleCategoryService.Update(vehicleCategory);
+            _vehicleCategoryService.Update(id, vehicleCategory);
 
             return Ok(vehicleCategory);
         }
@@ -79,9 +75,8 @@ public class VehicleCategoryController : Controller
         return BadRequest(vehicleCategory);
     }
 
-    [HttpDelete]
-    [Route("DeleteVehicleCategory/{id}")]
-    public async Task<IActionResult> DeleteVehicleCategory(int id)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
     {
         var result = await _vehicleCategoryService.GetById(id);
 

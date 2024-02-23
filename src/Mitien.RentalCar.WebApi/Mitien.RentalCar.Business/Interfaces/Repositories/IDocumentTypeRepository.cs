@@ -9,7 +9,7 @@ public interface IDocumentTypeRepository
     public Task<DocumentTypeResponseModel?> GetById(int id);
     public Task<List<DocumentTypeResponseModel?>> GetByDescription(string description);
     public void Add(DocumentTypeRequestModel userTypeRequestModel);
-    public void Update(DocumentTypeRequestModel userTypeRequestModel);
+    public void Update(int id, DocumentTypeRequestModel userTypeRequestModel);
     public void Delete(int id);
 }
 

@@ -15,17 +15,15 @@ public class UserTypeController : Controller
     }
 
     [HttpGet]
-    [Route("GetUserTypes")]
-    public async Task<IActionResult> GetUserTypes()
+    public async Task<IActionResult> Get()
     {
         var result = await _userTypeService.GetAll();
 
         return Ok(result);
     }
 
-    [HttpGet]
-    [Route("GetUserTypeById")]
-    public async Task<IActionResult> GetUserTypeById([FromQuery] int id)
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(int id)
     {
         var result = await _userTypeService.GetById(id);
 
@@ -36,8 +34,8 @@ public class UserTypeController : Controller
     }
 
     [HttpGet]
-    [Route("GetUserTypeByDescription")]
-    public async Task<IActionResult> GetUserTypeByDescription([FromQuery] string description)
+    [Route("Description")]
+    public async Task<IActionResult> GetByDescription([FromQuery] string description)
     {
         var result = await _userTypeService.GetByDescription(description);
 
@@ -48,8 +46,7 @@ public class UserTypeController : Controller
     }
 
     [HttpPost]
-    [Route("AddUserType")]
-    public IActionResult AddUserType([FromBody] UserTypeRequestModel userType)
+    public IActionResult Post([FromBody] UserTypeRequestModel userType)
     {
         if (userType != null)
         {
@@ -61,17 +58,16 @@ public class UserTypeController : Controller
         return BadRequest(userType);
     }
 
-    [HttpPut]
-    [Route("UpdateUserType")]
-    public async Task<IActionResult> UpdateUserTypeAsync([FromBody] UserTypeRequestModel userType)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(int id, [FromBody] UserTypeRequestModel userType)
     {
         if (userType != null)
         {
-            var result = await _userTypeService.GetById(userType.Id);
+            var result = await _userTypeService.GetById(id);
 
             if (result is null) return NotFound();
 
-            _userTypeService.Update(userType);
+            _userTypeService.Update(id, userType);
 
             return Ok(userType);
         }
@@ -79,9 +75,8 @@ public class UserTypeController : Controller
         return BadRequest(userType);
     }
 
-    [HttpDelete]
-    [Route("DeleteUserType/{id}")]
-    public async Task<IActionResult> DeleteUserType(int id)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
     {
         var result = await _userTypeService.GetById(id);
 

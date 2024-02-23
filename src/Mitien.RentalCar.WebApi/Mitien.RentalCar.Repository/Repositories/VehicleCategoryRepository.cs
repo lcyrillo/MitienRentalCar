@@ -49,14 +49,14 @@ public class VehicleCategoryRepository : IVehicleCategoryRepository
                                          vehicleCategoryRequestModel);
     }
 
-    public async void Update(VehicleCategoryRequestModel vehicleCategoryRequestModel)
+    public async void Update(int id, VehicleCategoryRequestModel vehicleCategoryRequestModel)
     {
         using var connection = new SqlConnection(_config.GetConnectionString("SqlServer"));
         await connection.ExecuteAsync("update VEHICLE_CATEGORY set name = @Name, initials = @Initials, description = @Description where id = @Id",
                                         new { vehicleCategoryRequestModel.Name, 
                                             vehicleCategoryRequestModel.Initials,
                                             vehicleCategoryRequestModel.Description,
-                                            vehicleCategoryRequestModel.Id });
+                                            id });
     }
 
     public async void Delete(int id)

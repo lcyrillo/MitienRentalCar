@@ -34,9 +34,9 @@ public class DocumentTypeService : IDocumentTypeService
         _documentTypeRepository.Add(userTypeRequestModel);
     }
 
-    public void Update(DocumentTypeRequestModel userTypeRequestModel)
+    public void Update(int id, DocumentTypeRequestModel userTypeRequestModel)
     {
-        _documentTypeRepository.Update(userTypeRequestModel);
+        _documentTypeRepository.Update(id, userTypeRequestModel);
     }
 
     public void Delete(int id)

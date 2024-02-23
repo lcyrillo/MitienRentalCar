@@ -34,9 +34,9 @@ public class VehicleCategoryService : IVehicleCategoryService
         _vehicleCategoryRepository.Add(vehicleCategoryRequestModel);
     }
 
-    public void Update(VehicleCategoryRequestModel vehicleCategoryRequestModel)
+    public void Update(int id, VehicleCategoryRequestModel vehicleCategoryRequestModel)
     {
-        _vehicleCategoryRepository.Update(vehicleCategoryRequestModel);
+        _vehicleCategoryRepository.Update(id, vehicleCategoryRequestModel);
     }
 
     public void Delete(int id)
